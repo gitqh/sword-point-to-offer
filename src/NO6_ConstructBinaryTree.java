@@ -81,7 +81,7 @@ public class NO6_ConstructBinaryTree {
             return null;
         }
         Node root = new Node(lastOrder[endLast]);
-        for (int i = 0; i <= endInorder; i++) {
+        for (int i = startInorder; i <= endInorder; i++) {
             if (inOrder[i] == lastOrder[endLast]) {
                 int offset = i - startInorder;
                 root.left = constructBinaryTreeWithLastAndMid(lastOrder, inOrder, startLast, startLast + offset - 1,
