@@ -1,9 +1,15 @@
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * 输入数组，判断该数组是否为某二叉搜索树的后序遍历结果
  *
  * 递归
  */
 public class NO24_IterateBinarySearchTree {
+
+
 
     public static void main(String[] args) {
         //           10

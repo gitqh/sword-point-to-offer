@@ -15,13 +15,14 @@ public class NO6_ConstructBinaryTree {
         int[] inorder = {4,7,2,1,5,3,8,6};
         int[] lastorder = {7,4,2,5,8,6,3,1};
 
-//        printTreePreorder(constructBinaryTreeWithPreAndMid(preorder,inorder));
-//        System.out.println();
-//        printTreeInorder(constructBinaryTreeWithPreAndMid(preorder,inorder));
-//        System.out.println();
-//        printTreeLastorder(constructBinaryTreeWithPreAndMid(preorder,inorder));
-//        System.out.println();
-//
+        //已知前序与中序 推后序
+        printTreePreorder(constructBinaryTreeWithPreAndMid(preorder,inorder));
+        System.out.println();
+        printTreeInorder(constructBinaryTreeWithPreAndMid(preorder,inorder));
+        System.out.println();
+        printTreeLastorder(constructBinaryTreeWithPreAndMid(preorder,inorder));
+        System.out.println();
+        //已知后序与中序，推前序
         printTreePreorder(constructBinaryTreeWithLastAndMid(lastorder, inorder));
         System.out.println();
         printTreeInorder(constructBinaryTreeWithLastAndMid(lastorder, inorder));
@@ -33,28 +34,10 @@ public class NO6_ConstructBinaryTree {
         if (preorder == null || inorder == null || preorder.length!=inorder.length) {
             return null;
         }
-        return constructBinaryTreeWithPreAndMid(preorder, inorder, 0, preorder.length - 1, 0, inorder.length - 1);
+        Node root = constructBinaryTreeWithPreAndMid(preorder, inorder, 0, preorder.length - 1, 0, inorder.length - 1);
+        return root;
     }
 
-//    public static Node constructBinaryTreeWithPreAndMid(int[] preOrder, int[] inOrder, int startPreorder, int endPreorder,
-//                                                        int startInorder, int endInorder) {
-//        if (startPreorder > endPreorder || startInorder > endInorder) {
-//            return null;
-//        }
-//        Node root = new Node(preOrder[startPreorder]);
-//
-//        int divider = 0;
-//        while (divider <= endInorder && inOrder[divider] != root.val) {
-//            divider++;
-//        }
-//        int offSet = divider - startInorder;
-//        root.left = constructBinaryTreeWithPreAndMid(preOrder, inOrder, startPreorder + 1,
-//                startPreorder + offSet, startInorder,
-//                startInorder + offSet - 1);
-//        root.right = constructBinaryTreeWithPreAndMid(preOrder, inOrder, startPreorder + offSet + 1,
-//                endPreorder, divider + 1, endInorder);
-//        return root;
-//    }
 
     public static Node constructBinaryTreeWithPreAndMid(int[] preOrder, int[] inOrder, int startPreorder, int endPreorder,
                                                         int startInorder, int endInorder) {

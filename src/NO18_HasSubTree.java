@@ -1,4 +1,3 @@
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 
 /**
  * 树的子结构
@@ -31,11 +30,35 @@ public class NO18_HasSubTree {
         root2.right = new Node();
         root2.right.val = 2;
         System.out.println(hasSubTree(root1, root2));
-        System.out.println(hasSubTree(root2, root1));
-        System.out.println(hasSubTree(root1, root1.left));
-        System.out.println(hasSubTree(root1, null));
-        System.out.println(hasSubTree(null, root2));
-        System.out.println(hasSubTree(null, null));
+//        System.out.println(hasSubTree(root2, root1));
+//        System.out.println(hasSubTree(root1, root1.left));
+//        System.out.println(hasSubTree(root1, null));
+//        System.out.println(hasSubTree(null, root2));
+//        System.out.println(hasSubTree(null, null));
+    }
+
+    public static boolean HasSubtree2(Node root1,Node root2) {
+
+        boolean res = false;
+        if(root1!=null && root2!=null){
+
+            if(root1.val == root2.val) {
+                res = DoesTreeHaveTree(root1,root2);
+            }
+            if(!res) res = HasSubtree2(root1.left, root2);
+            if(!res) res = HasSubtree2(root1.right, root2);
+        }
+        return res;
+    }
+
+    public static boolean DoesTreeHaveTree (Node root1,Node root2) {
+        if(root1 == null ) return false;
+        if(root2 == null) return true;
+        if(root1.val != root2.val)
+
+            return false;
+
+        return DoesTreeHaveTree(root1.left,root2.left) && DoesTreeHaveTree(root1.right,root2.right);
     }
 
     /**
@@ -59,10 +82,7 @@ public class NO18_HasSubTree {
         if (a.val == b.val) {
             result = DoesTree1HaveTree2(a, b);
         }
-        if (result) {
-            return result;
-        }
-        return hasSubTree(a.left, b) || hasSubTree(a.right, b);
+        return result || hasSubTree(a.left, b) || hasSubTree(a.right, b);
     }
 
     /**
@@ -79,14 +99,7 @@ public class NO18_HasSubTree {
         if (b == null) {
             return true;
         }
-        if (a == null) {
-            return false;
-        }
-        if (a.val == b.val) {
-            return DoesTree1HaveTree2(a.left, b.left) &&
-                    DoesTree1HaveTree2(a.right, b.right);
-        }
-        return false;
+        return a != null && (a.val == b.val ? DoesTree1HaveTree2(a.left, b.left) && DoesTree1HaveTree2(a.right, b.right) : false);
     }
 
     static class Node {

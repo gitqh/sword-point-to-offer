@@ -28,11 +28,11 @@ public class NO17_MergeSortedLists {
         printList(h1);
         printList(h2);
 
-//        Node mergeHead1 = mergeListWithIteration(h1, h2);
-//        printList(mergeHead1);
-
-        Node mergeHead2 = mergeListsWithRecursion(h1, h2);
-        printList(mergeHead2);
+        Node mergeHead1 = mergeListWithIteration(h1, h2);
+        printList(mergeHead1);
+//
+//        Node mergeHead2 = mergeListsWithRecursion(h1, h2);
+//        printList(mergeHead2);
 
     }
 
